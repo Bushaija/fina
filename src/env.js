@@ -8,7 +8,7 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
-    LOG_LEVEL: z.enum(["error", "warn", "info", "debug"]),
+    // LOG_LEVEL: z.enum(["error", "warn", "info", "debug"]),
     DATABASE_URL: z.string().url(),
     CLERK_SECRET_KEY: z.string().min(1)
   },
@@ -31,7 +31,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    LOG_LEVEL: process.env.LOG_LEVEL,
+    // LOG_LEVEL: process.env.LOG_LEVEL,
     DATABASE_URL: process.env.DATABASE_URL,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,

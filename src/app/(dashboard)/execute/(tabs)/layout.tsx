@@ -40,20 +40,20 @@ export default function ExecuteLayout({
 
   return (
     <div className="space-y-4 p-4">
-      <Tabs value={facilityType} onValueChange={handleTabChange} className="w-full">
+      <Tabs defaultValue="health-centers" value={facilityType} onValueChange={handleTabChange} className="w-full">
         <TabsList className="grid w-[250px] grid-cols-2">
           <TabsTrigger value="health-centers">Health Centers</TabsTrigger>
-          <TabsTrigger value="hospitals">Hospitals</TabsTrigger>
+          <TabsTrigger value="hospitals">Hospital</TabsTrigger>
         </TabsList>
         <TabsContent value="health-centers" className="mt-6">
           <div className="rounded-lg border p-4">
-            <h3 className="text-lg font-medium mb-4">Health Centers Planning</h3>
+            {/* <h3 className="text-lg font-medium mb-4">Health Centers Planning</h3> */}
             {children}
           </div>
         </TabsContent>
         <TabsContent value="hospitals" className="mt-6">
           <div className="rounded-lg border p-4">
-            <h3 className="text-lg font-medium mb-4">Hospital Planning</h3>
+            {/* <h3 className="text-lg font-medium mb-4">Hospital Planning</h3> */}
             {children}
           </div>
         </TabsContent>

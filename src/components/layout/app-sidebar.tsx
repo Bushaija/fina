@@ -102,8 +102,15 @@ export default function AppSidebar() {
                               asChild
                               isActive={pathname === subItem.url}
                             >
-                              <Link href={subItem.url}>
-                                <span>{subItem.title}</span>
+                              <Link href={subItem.url} className="w-full">
+                                <div className="flex items-center justify-between w-full">
+                                  <span>{subItem.title}</span>
+                                  {subItem.label && (
+                                    <span className="text-xs px-1.5 py-0.5 bg-yellow-100 text-yellow-800 rounded-sm ml-2">
+                                      {subItem.label}
+                                    </span>
+                                  )}
+                                </div>
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>

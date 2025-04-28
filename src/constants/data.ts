@@ -41,10 +41,11 @@ export const navItems: NavItem[] = [
         shortcut: ['m', 'm']
       },
       {
-        title: 'Tuberculosis (TB)',
+        title: 'TB',
         url: '/plans/tb',
         icon: 'userPen',
-        shortcut: ['m', 'm']
+        shortcut: ['m', 'm'],
+        label: 'Hospitals Only'
       },
     ]
   },
@@ -68,10 +69,11 @@ export const navItems: NavItem[] = [
         shortcut: ['m', 'm']
       },
       {
-        title: 'Tuberculosis (TB)',
+        title: 'TB',
         url: '/execute/tb',
         icon: 'userPen',
-        shortcut: ['m', 'm']
+        shortcut: ['m', 'm'],
+        label: 'Hospitals Only'
       },
     ]
   },
