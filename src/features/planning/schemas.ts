@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { HEALTH_CENTER_ACTIVITIES } from '@/constants/healthCenterActivities';
+import { HOSPITAL_ACTIVITIES } from '@/constants/hospitalActivities';
 
 export const activitySchema = z.object({
   id: z.string().optional(),
@@ -35,65 +37,8 @@ export type ActivityCategoryType = {
   [categoryName: string]: ActivityEntry[];
 };
 
-// Categories and their activities
-export const ACTIVITY_CATEGORIES: ActivityCategoryType = {
-  "Human Resources (HR)": [
-    {
-      activity: "Provide salaries for health facilities staff (DHs, HCs)",
-      typeOfActivity: "Salary"
-    },
-    {
-      activity: "Provide salaries for health facilities staff (DHs, HCs)",
-      typeOfActivity: "Bonus 2023/2024"
-    }
-  ],
-  "Travel Related Costs (TRC)": [
-    {
-      activity: "Conduct support group meeting at Health Facilities especially for adolescents and children",
-      typeOfActivity: "Workshop"
-    },
-    {
-      activity: "Conduct supervision from Health centers to CHWs",
-      typeOfActivity: "Supervision"
-    },
-    {
-      activity: "Conduct home visit for lost to follow up",
-      typeOfActivity: "Supervision"
-    },
-    {
-      activity: "Conduct sample transportation from Health centers to District Hospitals",
-      typeOfActivity: "Transport"
-    }
-  ],
-  "Health Products & Equipment (HPE)": [
-    {
-      activity: "Support to DHs and HCs to improve and maintain infrastructure standards",
-      typeOfActivity: "Maintenance and Repair"
-    }
-  ],
-  "Program Administration Costs (PA)": [
-    {
-      activity: "Provide running costs for DHs & HCs",
-      typeOfActivity: "Running costs Communication"
-    },
-    {
-      activity: "Provide running costs for DHs & HCs",
-      typeOfActivity: "Running costs Office Supplies"
-    },
-    {
-      activity: "Provide running costs for DHs & HCs",
-      typeOfActivity: "Running cost Refreshments"
-    },
-    {
-      activity: "Provide running costs for DHs & HCs",
-      typeOfActivity: "Running cost Transport for reporting"
-    },
-    {
-      activity: "Provide running costs for DHs & HCs",
-      typeOfActivity: "Running costs Bank charges"
-    }
-  ]
-};
+// Export both activity categories for use
+export const ACTIVITY_CATEGORIES = HEALTH_CENTER_ACTIVITIES;
 
 // Helper to create a skeleton activity
 export const createEmptyActivity = (
@@ -154,10 +99,11 @@ export const calculateTotalBudget = (activity: Activity): number => {
 };
 
 // Generate default activities for a new plan
-export const generateDefaultActivities = (): Activity[] => {
+export const generateDefaultActivities = (isHospital = false): Activity[] => {
   const activities: Activity[] = [];
+  const categoriesSource = isHospital ? HOSPITAL_ACTIVITIES : HEALTH_CENTER_ACTIVITIES;
 
-  Object.entries(ACTIVITY_CATEGORIES).forEach(([category, entries]) => {
+  Object.entries(categoriesSource).forEach(([category, entries]) => {
     entries.forEach(entry => {
       activities.push(createEmptyActivity(
         category, 

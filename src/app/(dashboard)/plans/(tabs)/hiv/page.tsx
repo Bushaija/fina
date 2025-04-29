@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 export default function HIVPlanPage() {
   const searchParams = useSearchParams();
   const facilityType = searchParams.get('facility');
+  const isHospital = facilityType !== 'health-centers';
 
   return (
     <div className="space-y-6">
@@ -19,7 +20,7 @@ export default function HIVPlanPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="overflow-auto pb-6">
-          <PlanTable />
+          <PlanTable isHospital={isHospital} />
         </CardContent>
       </Card>
     </div>

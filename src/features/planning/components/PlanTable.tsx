@@ -15,19 +15,26 @@ import { Button } from '@/components/ui/button';
 import { PlanActivityRow } from './PlanActivityRow';
 import { PlanGeneralTotalRow } from './PlanGeneralTotalRow';
 import { 
-  ACTIVITY_CATEGORIES, 
   Activity, 
   Plan, 
   generateDefaultActivities,
   planSchema,
   createEmptyActivity
 } from '../schemas';
+import { HEALTH_CENTER_ACTIVITIES } from '@/constants/healthCenterActivities';
+import { HOSPITAL_ACTIVITIES } from '@/constants/hospitalActivities';
 
-export function PlanTable() {
+interface PlanTableProps {
+  isHospital?: boolean;
+}
+
+export function PlanTable({ isHospital = false }: PlanTableProps) {
+  const activityCategories = isHospital ? HOSPITAL_ACTIVITIES : HEALTH_CENTER_ACTIVITIES;
+  
   const form = useForm<Plan>({
     resolver: zodResolver(planSchema) as any,
     defaultValues: {
-      activities: generateDefaultActivities()
+      activities: generateDefaultActivities(isHospital)
     }
   });
   
@@ -90,7 +97,7 @@ export function PlanTable() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {Object.entries(ACTIVITY_CATEGORIES).map(([category, entries]) => {
+              {Object.entries(activityCategories).map(([category, entries]) => {
                 // First, render the category row
                 const categoryActivities = categorizedActivities[category] || [];
                 const firstCategoryActivity = categoryActivities[0] || createEmptyActivity(category, '');
