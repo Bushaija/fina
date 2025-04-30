@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { HEALTH_CENTER_ACTIVITIES } from '@/constants/healthCenterActivities';
-import { HOSPITAL_ACTIVITIES } from '@/constants/hospitalActivities';
+import { HEALTH_CENTER_ACTIVITIES } from '@/constants/hiv-data/healthCenterActivities';
+import { HOSPITAL_ACTIVITIES } from '@/constants/hiv-data/hospitalActivities';
 
 export const activitySchema = z.object({
   id: z.string().optional(),

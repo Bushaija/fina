@@ -1,4 +1,4 @@
-import { ActivityCategoryType } from '../features/planning/schemas';
+import { ActivityCategoryType } from '../../features/planning/schema/hiv/schemas';
 
 // Categories and their activities for Health Centers
 export const HEALTH_CENTER_ACTIVITIES: ActivityCategoryType = {

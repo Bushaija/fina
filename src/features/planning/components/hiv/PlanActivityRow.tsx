@@ -3,8 +3,8 @@
 import React, { useEffect } from 'react';
 import { TableRow, TableCell } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
-import { Activity, calculateQuarterAmount, calculateTotalBudget } from '../schemas';
-import { formatCurrency } from '../utils';
+import { Activity, calculateQuarterAmount, calculateTotalBudget } from '../../schema/hiv/schemas';
+import { formatCurrency } from '../../utils';
 import { UseFormReturn } from 'react-hook-form';
 
 interface PlanActivityRowProps {

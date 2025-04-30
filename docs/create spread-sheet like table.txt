@@ -1,0 +1,42 @@
+I want you to assist me create a dynamic, spreadsheet-style form to plan and allocate budgets by activities for Malaria program.
+Each row will represent an activity  with specific properties like quantity, frequency, unit cost, amount per quarter
+
+we will use:
+- Next.js (app router)
+- shadcn/ui library for table and input, etc
+- react-hook-form for form state management
+- zod for validation
+- reusable components for clean and scalable code
+
+1. table structure
+
+columns:
+- activity:
+- activity description
+- quantity
+- frequency
+- unit cost
+- Q1 (quarter 1)  
+- Q2 (quarter 2)
+- Q4 (quarter 3)
+- Q4 (quarter 4)
+- annual budget
+- comment
+
+Column Name			Description					Mandatory?
+------------------------------------------------------------------------------------------
+Activity			Actual activity					Yes
+Activity description		Description of the activity			Yes
+Quantity			Specific activity				Yes
+Frequency			Number of times the activity happens		Yes
+Unit Cost			Cost per occurrence				Yes
+Amount Q1			(Calculated Field)				Auto
+Amount Q2			(Calculated Field)				Auto
+Amount Q3			(Calculated Field)				Auto
+Amount Q4			(Calculated Field)				Auto
+Annual Budget			Sum of quarterly amounts			Auto
+Comment				Optional notes					Optional
+
+
+
+

@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { TableRow, TableCell } from '@/components/ui/table';
-import { formatCurrency } from '../utils';
-import { Activity } from '../schemas';
+import { formatCurrency } from '../../utils';
+import { Activity } from '../../schema/hiv/schemas';
 
 interface PlanGeneralTotalRowProps {
   activities: Activity[];

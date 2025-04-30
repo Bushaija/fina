@@ -20,9 +20,9 @@ import {
   generateDefaultActivities,
   planSchema,
   createEmptyActivity
-} from '../schemas';
-import { HEALTH_CENTER_ACTIVITIES } from '@/constants/healthCenterActivities';
-import { HOSPITAL_ACTIVITIES } from '@/constants/hospitalActivities';
+} from '../../schema/hiv/schemas';
+import { HEALTH_CENTER_ACTIVITIES } from '@/constants/hiv-data/healthCenterActivities';
+import { HOSPITAL_ACTIVITIES } from '@/constants/hiv-data/hospitalActivities';
 
 interface PlanTableProps {
   isHospital?: boolean;

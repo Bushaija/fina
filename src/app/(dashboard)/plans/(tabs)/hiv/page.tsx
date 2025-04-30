@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
-import { PlanTable } from '@/features/planning/components/PlanTable';
+import { PlanTable } from '@/features/planning/components/hiv/PlanTable';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function HIVPlanPage() {
@@ -16,7 +16,7 @@ export default function HIVPlanPage() {
         <CardHeader>
           <CardTitle>{facilityType === 'health-centers' ? 'Health Center Budget Planning' : 'Hospital Budget Planning'}</CardTitle>
           <CardDescription>
-            Plan activities and allocate budgets across quarters. All amounts are calculated automatically.
+            Plan activities and allocate budgets across quarters.
           </CardDescription>
         </CardHeader>
         <CardContent className="overflow-auto pb-6">
