@@ -12,26 +12,21 @@ import {
   TableHead, 
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { PlanActivityRow } from '../hiv/PlanActivityRow';
-import { PlanGeneralTotalRow } from '../hiv/PlanGeneralTotalRow';
+import { PlanActivityRow } from './malaria-plan-activity-row';
+import { PlanGeneralTotalRow } from './malaria-general-total-row';
 import { 
-  Activity, 
   Plan, 
   generateDefaultActivities,
-  planSchema,
-  createEmptyActivity
-} from '../../schema/hiv/schemas';
-import { MALARIA_ACTIVITIES } from '@/constants/malaria-data/malaria-activities';
+  planSchema
+} from '../../schema/malaria/schema';
 
 interface PlanTableProps {
   isHospital?: boolean;
 };
 
 export function PlanTable({ isHospital = false }: PlanTableProps) {
-  const activityCategories = isHospital ? MALARIA_ACTIVITIES : MALARIA_ACTIVITIES;
-  
   const form = useForm<Plan>({
-    resolver: zodResolver(planSchema) as any,
+    resolver: zodResolver(planSchema),
     defaultValues: {
       activities: generateDefaultActivities(isHospital)
     }
@@ -40,34 +35,8 @@ export function PlanTable({ isHospital = false }: PlanTableProps) {
   const { watch, handleSubmit } = form;
   const activities = watch('activities');
   
-  // Function to organize activities by category
-  const organizeActivitiesByCategory = () => {
-    const categorizedActivities: Record<string, Activity[]> = {};
-    
-    activities.forEach(activity => {
-      const category = activity.activityCategory;
-      if (!categorizedActivities[category]) {
-        categorizedActivities[category] = [];
-      }
-      categorizedActivities[category].push(activity);
-    });
-    
-    return categorizedActivities;
-  };
-  
-  const categorizedActivities = organizeActivitiesByCategory();
-  
-  // Find index of an activity in the full activities array
-  const getActivityIndex = (activity: Activity) => {
-    return activities.findIndex(
-      a => a.activityCategory === activity.activityCategory && 
-           a.typeOfActivity === activity.typeOfActivity &&
-           a.activity === activity.activity
-    );
-  };
-  
-  const onSubmit: SubmitHandler<any> = (data) => {
-    console.log('Form submitted:', data as Plan);
+  const onSubmit: SubmitHandler<Plan> = (data) => {
+    console.log('Form submitted:', data);
     // Here you would typically save this data to your backend
     alert('Plan saved successfully!');
   };
@@ -81,19 +50,26 @@ export function PlanTable({ isHospital = false }: PlanTableProps) {
               <TableRow>
                 <TableHead className="w-[160px]">Activity</TableHead>
                 <TableHead className="w-[200px]">Activity Description</TableHead>
-                <TableHead className="w-[80px]">Quantity</TableHead>
-                <TableHead className="w-[80px]">Frequency</TableHead>
-                <TableHead className="w-[80px]">Unit Cost</TableHead>
-                <TableHead className="w-[80px]">Amount<br/>Q1</TableHead>
-                <TableHead className="w-[80px]">Amount<br/>Q2</TableHead>
-                <TableHead className="w-[80px]">Amount<br/>Q3</TableHead>
-                <TableHead className="w-[80px]">Amount<br/>Q4</TableHead>
-                <TableHead className="w-[100px]">Annual Budget</TableHead>
-                <TableHead className="w-[160px]">Comment</TableHead>
+                <TableHead className="w-[120px]">Quantity</TableHead>
+                <TableHead className="w-[120px]">Frequency</TableHead>
+                <TableHead className="w-[120px]">Unit Cost</TableHead>
+                <TableHead className="w-[80px] text-center">Amount<br/>Q1</TableHead>
+                <TableHead className="w-[80px] text-center">Amount<br/>Q2</TableHead>
+                <TableHead className="w-[80px] text-center">Amount<br/>Q3</TableHead>
+                <TableHead className="w-[80px] text-center">Amount<br/>Q4</TableHead>
+                <TableHead className="w-[100px] text-center">Annual Budget</TableHead>
+                <TableHead className="w-[160px] text-center">Comment</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              // {}
+              {activities.map((activity, index) => (
+                <PlanActivityRow 
+                  key={activity.id || index}
+                  activity={activity}
+                  index={index}
+                  form={form}
+                />
+              ))}
             </TableBody>
             <TableFooter>
               <PlanGeneralTotalRow activities={activities} />

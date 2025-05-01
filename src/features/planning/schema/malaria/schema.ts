@@ -4,13 +4,14 @@ import { MALARIA_ACTIVITIES } from "@/constants/malaria-data/malaria-activities"
 export const activitySchema = z.object({
     id: z.string().optional(),
     activity: z.string(),
+    activityDescription: z.string(),
     quantity: z.number(),
     frequency: z.number().min(1, "frequency is required"),
     unitCost: z.number().min(1, "unit cost is required"),
-    amountQ1: z.number().optional().default(0),
-    amountQ2: z.number().optional().default(0),
-    amountQ3: z.number().optional().default(0),
-    amountQ4: z.number().optional().default(0),
+    amountQ1: z.number(),
+    amountQ2: z.number(),
+    amountQ3: z.number(),
+    amountQ4: z.number(),
     annualBudget: z.number().optional(),
     comment: z.string().optional()
 });
@@ -24,6 +25,7 @@ export type Plan = z.infer<typeof planSchema>;
 
 export type ActivityEntry = {
     activity: string;
+    activityDescription: string;
 };
 
 // skipped ActivityCategoryType
@@ -31,9 +33,10 @@ export type ActivityEntry = {
 export const ACTIVITY_CATEGORIES = MALARIA_ACTIVITIES;
 
 export const createEmptyActivity = (
-    activity: string,
+    entry: ActivityEntry,
 ): Activity => ({
-    activity,
+    activity: entry.activity,
+    activityDescription: entry.activityDescription,
     quantity: 0,
     frequency: 0,
     unitCost: 0,
