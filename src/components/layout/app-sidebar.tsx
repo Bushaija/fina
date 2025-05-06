@@ -30,6 +30,7 @@ import {
   SidebarRail,
   // useSidebar
 } from '@/components/ui/sidebar';
+import Link from 'next/link';
 import { navItems } from '@/constants/data';
 import {
   BadgeCheck,
@@ -40,8 +41,6 @@ import {
   GalleryVerticalEnd,
   LogOut
 } from 'lucide-react';
-import { useUser, SignOutButton } from '@clerk/nextjs';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import * as React from 'react';
 import { Icons } from '../icons';
@@ -53,7 +52,13 @@ export const company = {
 };
 
 export default function AppSidebar() {
-  const { user } = useUser();
+  const user = {
+    imageUrl: 'https://github.com/shadcn.png',
+    fullName: 'John Doe',
+    primaryEmailAddress: {
+      emailAddress: 'john.doe@example.com'
+    }
+  }
   const pathname = usePathname();
   // const { state, isMobile } = useSidebar();
 
@@ -211,12 +216,12 @@ export default function AppSidebar() {
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <SignOutButton>
+                  {/* <SignOutButton> */}
                     <button className='flex w-full items-center gap-2'>
                       <LogOut />
                       Log out
                     </button>
-                  </SignOutButton>
+                  {/* </SignOutButton> */}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

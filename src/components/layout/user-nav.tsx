@@ -11,11 +11,20 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { useClerk, useUser } from '@clerk/nextjs';
 
 export function UserNav() {
-  const { signOut } = useClerk()
-  const { user } = useUser();
+  const user = {
+    imageUrl: 'https://github.com/shadcn.png',
+    firstName: 'John',
+    lastName: 'Doe',
+    fullName: 'John Doe',
+    emailAddresses: [{
+      emailAddress: 'john.doe@example.com'
+    }]
+  }
+  const signOut = () => {
+    console.log('signOut');
+  }
 
   if (user) {
     return (
